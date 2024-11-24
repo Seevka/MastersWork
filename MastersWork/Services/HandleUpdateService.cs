@@ -59,6 +59,64 @@ namespace MastersWork.Services
                 await _dbContext.SaveChangesAsync();
                 await _botManagementService.HandleUserStateAsync(chatId, state);
             }
+            else if (text.StartsWith("Редагувати ім'я Бота") && state != null && state.IsAdmin)
+            {
+                await _botClient.SendTextMessageAsync(chatId, "Введіть нове ім'я: ");
+                state.CurrentStep = BotCreationStep.EditingBotName;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, text);
+            }
+            else if (text.StartsWith("Редагувати токен Бота") && state != null && state.IsAdmin)
+            {
+                await _botClient.SendTextMessageAsync(chatId, "Введіть новий токен: ");
+                state.CurrentStep = BotCreationStep.EditingBotToken;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, text);
+            }
+            else if (text.StartsWith("Редагувати питання Бота") && state != null && state.IsAdmin)
+            {
+                state.CurrentStep = BotCreationStep.EditingQA;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, text);
+            }
+            else if (text.StartsWith("Додати питання") && state != null && state.IsAdmin)
+            {
+                state.CurrentStep = BotCreationStep.CreateQuestionAnswer;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, text);
+            }
+            else if (text.StartsWith("Редагувати питання") && state != null && state.IsAdmin)
+            {
+                state.CurrentStep = BotCreationStep.EditQuestionAnswer;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, text);
+            }
+            else if (text.StartsWith("Видалити питання") && state != null && state.IsAdmin)
+            {
+                state.CurrentStep = BotCreationStep.DeleteQuestionAnswer;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, text);
+            }
+            else if (text.StartsWith("Отримати список") && state != null && state.IsAdmin)
+            {
+                state.CurrentStep = BotCreationStep.GetAllQuestionsAnswers;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, text);
+            }
+            else if ((text.StartsWith("Вийти в головне меню") || text.StartsWith("/edit")) && state != null && state.IsAdmin)
+            {
+                state.CurrentStep = BotCreationStep.Start;
+                _dbContext.UserStates.Update(state);
+                await _dbContext.SaveChangesAsync();
+                await _botManagementService.HandleUserStateAsync(chatId, state);
+            }
             else if ((text.StartsWith("Запустити Бота") || text.StartsWith("/run")) && state != null && state.IsAdmin)
             {
                 state.CurrentStep = BotCreationStep.RunningBot;

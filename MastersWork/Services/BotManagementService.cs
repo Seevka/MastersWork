@@ -10,11 +10,13 @@ namespace MastersWork.Services
     public class BotManagementService(
         ITelegramBotClient botClient,
         ApplicationDbContext dbContext,
-        IExternalOperationsService externalOperationsService) : IBotManagementService
+        IExternalOperationsService externalOperationsService,
+        IUserInputService userInputService) : IBotManagementService
     {
         private readonly ITelegramBotClient _botClient = botClient;
         private readonly ApplicationDbContext _dbContext = dbContext;
         private readonly IExternalOperationsService _externalOperationsService = externalOperationsService;
+        private readonly IUserInputService _userInputService = userInputService;
 
         public async Task HandleUserStateAsync(long chatId, UserState state)
         {
@@ -59,11 +61,13 @@ namespace MastersWork.Services
                 await StoppingBotAsync(chatId);
                 state.CurrentStep = BotCreationStep.EditingBot;
                 await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, "");
             }
             else
             {
                 state.CurrentStep = BotCreationStep.EditingBot;
                 await _dbContext.SaveChangesAsync();
+                await _userInputService.HandleUserInputEditAsync(chatId, state, "");
             }
         }
 

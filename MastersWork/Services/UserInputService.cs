@@ -176,9 +176,9 @@ namespace MastersWork.Services
                             await PerformStartStateAsync(state);
                             await _botClient.SendTextMessageAsync(chatId, "Додавання питань завершено, не забудьте запустити бота після усіх змін", replyMarkup: editQAKeyboard);
                         }
-                        else if (text.Contains(':'))
+                        else if (text.Contains(';'))
                         {
-                            var parts = text.Split(':', 2);
+                            var parts = text.Split(';', 2);
                             if (parts.Length == 2)
                             {
                                 var question = parts[0].Trim();
@@ -195,12 +195,12 @@ namespace MastersWork.Services
                             }
                             else
                             {
-                                await _botClient.SendTextMessageAsync(chatId, "Неправильний формат. Будь ласка, введіть у форматі 'Питання:Відповідь'.");
+                                await _botClient.SendTextMessageAsync(chatId, "Неправильний формат. Будь ласка, введіть у форматі 'Питання;Відповідь'.");
                             }
                         }
                         else
                         {
-                            await _botClient.SendTextMessageAsync(chatId, "Будь ласка, введіть у форматі 'Питання:Відповідь', або /done, щоб завершити.");
+                            await _botClient.SendTextMessageAsync(chatId, "Будь ласка, введіть у форматі 'Питання;Відповідь', або /done, щоб завершити.");
                         }
                     }
                     break;
@@ -225,7 +225,7 @@ namespace MastersWork.Services
                                 $"Ви вибрали для редагування:\n" +
                                 $"Питання: '{questionToEdit.Question}'\n" +
                                 $"Відповідь: '{questionToEdit.Answer}'\n\n" +
-                                "Введіть нове питання та відповідь у форматі:\n" +
+                                "Введіть нове питання та відповідь у форматі;\n" +
                                 "Новий текст питання:Новий текст відповіді");
                         }
                         else
@@ -240,7 +240,7 @@ namespace MastersWork.Services
                         var indexToChange = int.Parse(userState!.TempData!);
                         var specificQuestionToEdit = botData!.QA![indexToChange - 1];
 
-                        var specificEditParts = text.Split(':');
+                        var specificEditParts = text.Split(';');
                         if (specificEditParts.Length == 2)
                         {
                             var newQuestion = specificEditParts[0].Trim();
@@ -265,7 +265,7 @@ namespace MastersWork.Services
                         else
                         {
                             await _botClient.SendTextMessageAsync(chatId,
-                                "Невірний формат. Введіть нове питання та відповідь у форматі:\n" +
+                                "Невірний формат. Введіть нове питання та відповідь у форматі;\n" +
                                 "Новий текст питання:Новий текст відповіді");
                         }
                     }
