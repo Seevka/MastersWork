@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MastersWork", "MastersWork\MastersWork.csproj", "{08A56B8E-3441-41FA-B1DB-AF9D4FBEA833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChildBot", "ChildBot\ChildBot.csproj", "{6C3762D9-A3E2-47CC-8889-CCEACE2634E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{08A56B8E-3441-41FA-B1DB-AF9D4FBEA833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08A56B8E-3441-41FA-B1DB-AF9D4FBEA833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08A56B8E-3441-41FA-B1DB-AF9D4FBEA833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08A56B8E-3441-41FA-B1DB-AF9D4FBEA833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C3762D9-A3E2-47CC-8889-CCEACE2634E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C3762D9-A3E2-47CC-8889-CCEACE2634E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C3762D9-A3E2-47CC-8889-CCEACE2634E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C3762D9-A3E2-47CC-8889-CCEACE2634E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4828732C-AE57-4DBA-A5DA-59E2485FF5FC}
+	EndGlobalSection
+EndGlobal
