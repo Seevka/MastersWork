@@ -36,7 +36,7 @@ namespace MastersWork.Services
                     case BotCreationStep.EnteringBotName:
                         if (await IsBotNameExistAtDB(text))
                         {
-                            await _botClient.SendTextMessageAsync(chatId, "Таке ім'я вже існує, обери інше!.");
+                            await _botClient.SendTextMessageAsync(chatId, "Таке ім'я вже існує, обери інше!");
                             break;
                         }
                         else if (IsUkrainian(text))
