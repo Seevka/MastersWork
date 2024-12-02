@@ -59,7 +59,7 @@ namespace MastersWork.Services
                     case BotCreationStep.EnteringBotToken:
                         botData!.Token = text;
 
-                        await _botClient.SendTextMessageAsync(chatId, "Тепер введіть питання та відповіді у форматі 'Питання:Відповідь'. Введіть /done, коли закінчите.");
+                        await _botClient.SendTextMessageAsync(chatId, "Тепер введіть питання та відповіді у форматі 'Питання;Відповідь'. Введіть /done, коли закінчите.");
                         userState!.CurrentStep = BotCreationStep.EnteringQA;
                         _dbContext.UserStates.Update(userState);
                         await _dbContext.SaveChangesAsync();
@@ -74,7 +74,7 @@ namespace MastersWork.Services
                         }
                         else
                         {
-                            var parts = text.Split(':', 2);
+                            var parts = text.Split(';', 2);
                             if (parts.Length == 2)
                             {
                                 var question = parts[0].Trim();
